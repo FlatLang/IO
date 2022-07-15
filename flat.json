@@ -1,0 +1,21 @@
+{
+  "name": "IO",
+  "version": "0.1.0",
+  "description": "Flat IO Library",
+  "author": "Braden Steffaniak",
+  "license": "ISC",
+  "scripts": {},
+  "main": {
+    "source": "src",
+    "dependencies": {
+      "github:FlatLang/Time": "master"
+    }
+  },
+  "test": {
+    "mainClass": "flatlang/http/IO_TestSuite",
+    "source": "src",
+    "dependencies": {
+      "github:FlatLang/Nest": "master"
+    }
+  }
+}
