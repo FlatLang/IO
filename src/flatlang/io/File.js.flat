@@ -152,7 +152,7 @@ class File {
         }
     }
 
-    public static async symbolicLink(File from, File to) => await from.symbolicLinkTo(to)
+    public static async symbolicLink(File from, File to) => from.symbolicLinkTo(to)
 
     public static class FileGlobal {
         external type FsType
