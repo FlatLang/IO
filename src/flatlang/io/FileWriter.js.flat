@@ -48,7 +48,7 @@ class {
     }
 
     try {
-      await action()
+      action()
     } finally {
       external {
         console.log = originalLog;
