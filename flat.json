@@ -8,7 +8,8 @@
   "main": {
     "source": "src",
     "dependencies": {
-      "github:FlatLang/Time": "master"
+      "github:FlatLang/Time": "master",
+      "github:FlatLang/Compiler-String-Extensions": "master"
     }
   },
   "test": {
