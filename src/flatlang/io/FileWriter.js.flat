@@ -2,11 +2,13 @@ package "flatlang/io"
 
 import "flatlang/regex/Pattern"
 
+import "flatlang/regex/RegexStringExtensions"
+
 class {
   private var String buffer = ""
 
   public write(String data) => this {
-    let split = data.split(new Pattern("\n"))
+    let split = data.split(/\n/)
 
     if (split.count > 1) {
       let dataToPrint = buffer + split.skipLast(1).join("\n")
