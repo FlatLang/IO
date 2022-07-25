@@ -118,6 +118,10 @@ class File {
         Bool: recursive = false,
         Bool: force = false
     ) => true {
+        if (!exists) {
+            return false
+        }
+
         native var Char[] errorMessage
 
         external {
