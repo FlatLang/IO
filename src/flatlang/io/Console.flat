@@ -3,7 +3,6 @@ package "flatlang/io"
 import "stdio.h"
 import "stdlib.h"
 import "flatlang/io/NativeConsole.h"
-import "flatlang/Substring"
 
 class Console {
     external type FILE
