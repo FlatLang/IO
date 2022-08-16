@@ -24,7 +24,7 @@ class {
   }
 
   public async captureOutput(async action(), Bool silent = true) -> String[] {
-    let output = new Array<String>()
+    let output = Array<String>()
     native var Char[] data
 
     let oldBuffer = buffer
@@ -58,14 +58,14 @@ class {
         log.forEach((line) => {
           #{data} = line.map(o => o.toString()).join(" ");
 
-          #{output.add(new String(data))};
+          #{output.add(String(data))};
         });
       }
 
       if (buffer.count > 0) {
         external {
           #{data} = #{buffer.chars.data};
-          #{output.add(new String(data))};
+          #{output.add(String(data))};
         }
       }
 

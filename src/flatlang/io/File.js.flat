@@ -53,7 +53,7 @@ class File {
     visible impure File[] files {
         get {
             if (!isDirectory) {
-                throw new Exception("Must be a directory to list files")
+                throw Exception("Must be a directory to list files")
             }
 
             var list = new File[]
@@ -62,7 +62,7 @@ class File {
             external {
                 #{FileGlobal.fs}.readdirSync(#{location.chars.data}).forEach((f) => {
                     #{filename} = f;
-                    #{list.add(new File("#{location}/#{new String(filename)}"))};
+                    #{list.add(File("#{location}/#{String(filename)}"))};
                 });
             }
 
@@ -85,7 +85,7 @@ class File {
             }
         }
 
-        return new File(new String(data))
+        return File(String(data))
     }
 
     static getExecutedDirectory() -> File => null {
@@ -99,7 +99,7 @@ class File {
             }
         }
 
-        return new File(new String(data))
+        return File(String(data))
     }
 
     public getParent() -> File => null {
@@ -109,10 +109,10 @@ class File {
             #{data} = #{FileGlobal.path}.resolve(#{location.chars.data}, '..');
         }
 
-        return new File(new String(data))
+        return File(String(data))
     }
 
-    public getChild(String location) => new File(this.location + "/" + location)
+    public getChild(String location) => File(this.location + "/" + location)
 
     public async delete(
         Bool: recursive = false,
@@ -139,7 +139,7 @@ class File {
             });
 
             if (#{errorMessage}) {
-                #{throw new Exception(new String(errorMessage))};
+                #{throw Exception(String(errorMessage))};
             }
         }
     }

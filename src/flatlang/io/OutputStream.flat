@@ -1,7 +1,7 @@
 package "flatlang/io"
 
 trait OutputStream {
-    visible static final EmptyOutputStream EMPTY = new EmptyOutputStream()
+    visible static final EmptyOutputStream EMPTY = EmptyOutputStream()
 
     public write(String value = "") => this
     public writeLine(String value = "") => write(value + "\n")

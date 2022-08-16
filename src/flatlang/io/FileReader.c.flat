@@ -73,7 +73,7 @@ class FileReader {
             rewind(handler);
         }
 
-        return new String(buffer, size)
+        return String(buffer, size)
     }
 
     public readLine() -> String {
@@ -91,7 +91,7 @@ class FileReader {
             #{line}[#{bufferSize} - 1] = '\0';
         }
 
-        return new String(line, bufferSize - 1)
+        return String(line, bufferSize - 1)
     }
 
     public readString() -> String {
@@ -109,7 +109,7 @@ class FileReader {
             #{line}[#{bufferSize} - 1] = '\0';
         }
 
-        return new String(line, bufferSize - 1)
+        return String(line, bufferSize - 1)
     }
 
     public readChar() -> Char {

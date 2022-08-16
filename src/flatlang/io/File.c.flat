@@ -30,7 +30,7 @@ class File {
     visible impure File[] files {
         get {
             if (!isDirectory) {
-                throw new Exception("Must be a directory to list files")
+                throw Exception("Must be a directory to list files")
             }
 
             var list = new File[]
@@ -51,7 +51,7 @@ class File {
                         #{current} = #{f}->name;
 
                         #{
-                            list.add(new File(location + "/" + new String(current), f))
+                            list.add(File(location + "/" + String(current), f))
                         }
                     //}
 
@@ -120,7 +120,7 @@ class File {
                 if (!file.is_dir) {
                     #{current} = file.name;
                     #{
-                        names.add(new String(current))
+                        names.add(String(current))
                     }
                 }
 
@@ -139,7 +139,7 @@ class File {
             Short max = (Short)2048
 
             if (value > max || value < min) {
-                throw new Exception("Invalid max number of open files: #value\nValid values include #{min}-#{max}")
+                throw Exception("Invalid max number of open files: #value\nValid values include #{min}-#{max}")
             } else {
                 extSetMaxOpenFiles(value)
             }

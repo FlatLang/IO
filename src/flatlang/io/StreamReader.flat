@@ -18,7 +18,7 @@ class StreamReader {//extends InputStream {
 //
 //        while (fgets(buffer, 128, pipe))
 // {
-//            output = output + new String(buffer)
+//            output = output + String(buffer)
 //        }
 //
 //        if (!feof(pipe))

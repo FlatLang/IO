@@ -24,7 +24,7 @@ class File {
     }
 
     static {
-        File exitLog = new File("log#Time.currentTimeMillis")
+        File exitLog = File("log#Time.currentTimeMillis")
     }
 
     public getChildFiles(

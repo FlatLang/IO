@@ -46,7 +46,7 @@ class FileWriter implements OutputStream {
     public construct() {
     }
 
-    public construct(String location) => this(new File(location))
+    public construct(String location) => this(File(location))
 
     public delete() => close() && remove(file.location.chars.data) == 0
 
@@ -66,13 +66,13 @@ class FileWriter implements OutputStream {
             fp = fopen(file.location.chars.data, "w")
 
             if (!file.exists) {
-                throw new FileNotFoundException(file)
+                throw FileNotFoundException(file)
             }
 
             reopen()
 
             if (!file.exists) {
-                throw new FileNotFoundException(file)
+                throw FileNotFoundException(file)
             }
 
             return true

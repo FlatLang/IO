@@ -2,6 +2,6 @@ package "flatlang/io"
 
 trait OutputStream {
     public async captureOutput(async action(), Bool silent = true) -> String[] {
-        return new Array<String>()
+        return Array<String>()
     }
 }
