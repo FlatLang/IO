@@ -1,4 +1,4 @@
-package "flatlang/io"
+package flatlang/io
 
 public trait InputStream {
     public readString() -> String

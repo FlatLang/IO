@@ -1,6 +1,6 @@
-package "flatlang/io"
+package flatlang/io
 
-//import "flatlang/io/NativeCurl.h"
+//import flatlang/io/NativeCurl.h
 
 class Curl {
   //  external char[] curl_get_string(char[] url)

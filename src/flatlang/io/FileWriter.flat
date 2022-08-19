@@ -1,6 +1,6 @@
-package "flatlang/io"
+package flatlang/io
 
-import "flatlang/regex/Pattern"
+import flatlang/regex/Pattern
 
 class FileWriter implements OutputStream {
     external type FILE
