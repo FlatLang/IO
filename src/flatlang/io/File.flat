@@ -5,48 +5,48 @@ import flatlang/time/Time
 import tinydir.h
 
 class File {
-    visible String location
-    visible String normalizedLocation
-    visible String name => normalizedLocation.substring(normalizedLocation.lastIndexOf('/') + 1)
-    visible String extension => normalizedLocation.substring(normalizedLocation.lastIndexOf('.', defaultReturnValue: normalizedLocation.count))
-    visible String extensionName => normalizedLocation.substring(normalizedLocation.lastIndexOf('.', defaultReturnValue: normalizedLocation.count - 1) + 1)
-    visible String rootName => name.substring(end: name.count - extension.count)
+  visible String location
+  visible String normalizedLocation
+  visible String name => normalizedLocation.substring(normalizedLocation.lastIndexOf('/') + 1)
+  visible String extension => normalizedLocation.substring(normalizedLocation.lastIndexOf('.', defaultReturnValue: normalizedLocation.count))
+  visible String extensionName => normalizedLocation.substring(normalizedLocation.lastIndexOf('.', defaultReturnValue: normalizedLocation.count - 1) + 1)
+  visible String rootName => name.substring(end: name.count - extension.count)
 
-    visible Bool isHidden => name.startsWith(".")
-    visible Bool isFile => exists && !isDirectory
-    visible Bool isDirectory => false
-    visible Bool exists => false
+  visible Bool isHidden => name.startsWith(".")
+  visible Bool isFile => exists && !isDirectory
+  visible Bool isDirectory => false
+  visible Bool exists => false
 
-    visible File[] files {
-        get {
-            return new File[]
-        }
+  visible File[] files {
+    get {
+      return new File[]
+    }
+  }
+
+  static {
+    File exitLog = File("log#Time.currentTimeMillis")
+  }
+
+  public getChildFiles(
+    Bool recursive = false,
+    Bool includeHidden = false
+  ) -> File[] {
+    let list = files
+
+    let directories = list
+      .filter({ _.isDirectory })
+      .filter({ includeHidden || !_.isHidden })
+      .filter({ _.name != "." })
+      .filter({ _.name != ".." })
+
+    if (recursive) {
+      directories.forEach({ list.addAll(_.getChildFiles(recursive: true)) })
     }
 
-    static {
-        File exitLog = File("log#Time.currentTimeMillis")
-    }
+    return list
+      .filter({ !_.isDirectory })
+      .filter({ includeHidden || !_.isHidden })
+  }
 
-    public getChildFiles(
-        Bool recursive = false,
-        Bool includeHidden = false
-    ) -> File[] {
-        let list = files
-
-        let directories = list
-            .filter({ _.isDirectory })
-            .filter({ includeHidden || !_.isHidden })
-            .filter({ _.name != "." })
-            .filter({ _.name != ".." })
-
-        if (recursive) {
-            directories.forEach({ list.addAll(_.getChildFiles(recursive: true)) })
-        }
-
-        return list
-            .filter({ !_.isDirectory })
-            .filter({ includeHidden || !_.isHidden })
-    }
-
-    public toString() => "{File \"#location\"}"
+  public toString() => "{File \"#location\"}"
 }

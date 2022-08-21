@@ -1,28 +1,28 @@
 package flatlang/io
 
 class FileReader {
-    public readAllContents() -> String {
-        var Int size
+  public readAllContents() -> String {
+    var Int size
 
-        native var Char[] buffer
+    native var Char[] buffer
 
-        external js {
-            try {
-                #{buffer} = #{File.FileGlobal.fs}.readFileSync(#{file.location.chars.data}, 'utf8');
-                #{size} = #{buffer}.length;
-            } catch (err) {
-                #{throw Exception("Could not read contents of file '#file.location'")};
-            }
-        }
-
-        return String(buffer, size)
+    external js {
+      try {
+        #{buffer} = #{File.FileGlobal.fs}.readFileSync(#{file.location.chars.data}, 'utf8');
+        #{size} = #{buffer}.length;
+      } catch (err) {
+        #{throw Exception("Could not read contents of file '#file.location'")};
+      }
     }
 
-    public readLine() -> String {
-        return readString()
-    }
+    return String(buffer, size)
+  }
 
-    public readChar() -> Char {
-        return 0
-    }
+  public readLine() -> String {
+    return readString()
+  }
+
+  public readChar() -> Char {
+    return 0
+  }
 }

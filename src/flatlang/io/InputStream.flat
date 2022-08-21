@@ -1,6 +1,6 @@
 package flatlang/io
 
 public trait InputStream {
-    public readString() -> String
-    public readBytes() -> Byte[]
+  public readString() -> String
+  public readBytes() -> Byte[]
 }

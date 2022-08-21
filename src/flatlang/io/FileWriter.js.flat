@@ -8,89 +8,89 @@ class {
   private var String buffer = ""
 
   public write(String data) => this {
-    if (file) {
-      external {
-        #{File.FileGlobal.fs}.writeFileSync(#{file.location.chars.data}, #{data.chars.data});
-      }
-
-      return this
+  if (file) {
+    external {
+    #{File.FileGlobal.fs}.writeFileSync(#{file.location.chars.data}, #{data.chars.data});
     }
 
-    let split = data.split(/\n/)
+    return this
+  }
 
-    if (split.count > 1) {
-      let dataToPrint = buffer + split.skipLast(1).join("\n")
+  let split = data.split(/\n/)
 
-      buffer = split.last
+  if (split.count > 1) {
+    let dataToPrint = buffer + split.skipLast(1).join("\n")
 
-      external {
-        console.log(#{dataToPrint.chars.data});
-      }
-    } else {
-      buffer += data
+    buffer = split.last
+
+    external {
+    console.log(#{dataToPrint.chars.data});
     }
+  } else {
+    buffer += data
+  }
   }
 
   public async captureOutput(async action(), Bool silent = true) -> String[] {
-    let output = Array<String>()
-    native var Char[] data
+  let output = Array<String>()
+  native var Char[] data
 
-    let oldBuffer = buffer
-    buffer = ""
+  let oldBuffer = buffer
+  buffer = ""
 
+  external {
+    var originalLog = console.log;
+    var log = [];
+  }
+  if (silent) {
     external {
-      var originalLog = console.log;
-      var log = [];
+    console.log = function () {
+      log.push([].slice.call(arguments));
+    };
     }
-    if (silent) {
-      external {
-        console.log = function () {
-          log.push([].slice.call(arguments));
-        };
-      }
-    } else {
-      external {
-        console.log = function () {
-          originalLog.apply(this, [].slice.call(arguments));
-          log.push([].slice.call(arguments));
-        };
-      }
+  } else {
+    external {
+    console.log = function () {
+      originalLog.apply(this, [].slice.call(arguments));
+      log.push([].slice.call(arguments));
+    };
     }
+  }
 
-    try {
-      action()
-    } finally {
-      external {
-        console.log = originalLog;
+  try {
+    action()
+  } finally {
+    external {
+    console.log = originalLog;
 
-        log.forEach((line) => {
-          #{data} = line.map(o => o.toString()).join(" ");
+    log.forEach((line) => {
+      #{data} = line.map(o => o.toString()).join(" ");
 
-          #{output.add(String(data))};
-        });
-      }
-
-      if (buffer.count > 0) {
-        external {
-          #{data} = #{buffer.chars.data};
-          #{output.add(String(data))};
-        }
-      }
-
-      buffer = oldBuffer
+      #{output.add(String(data))};
+    });
     }
 
-    return output
+    if (buffer.count > 0) {
+    external {
+      #{data} = #{buffer.chars.data};
+      #{output.add(String(data))};
+    }
+    }
+
+    buffer = oldBuffer
+  }
+
+  return output
   }
 
   public flush() {
-    if (buffer.count > 0) {
-      external {
-        console.log(#{buffer.chars.data});
-      }
-
-      buffer = ""
+  if (buffer.count > 0) {
+    external {
+    console.log(#{buffer.chars.data});
     }
+
+    buffer = ""
+  }
   }
 
   public close() => false

@@ -1,22 +1,22 @@
 package flatlang/io
 
 class FileReader implements InputStream {
-    visible Bool isOpen => false
+  visible Bool isOpen => false
 
-    public readBytes() => null
+  public readBytes() => null
 
-    visible File file
+  visible File file
 
-    public construct(visible File file) {
-        open()
-    }
+  public construct(visible File file) {
+    open()
+  }
 
-    [Target js]
-    public readString() -> String {
-        return readAllContents()
-    }
+  [Target js]
+  public readString() -> String {
+    return readAllContents()
+  }
 
-    public open() {}
+  public open() {}
 
-    public close() => true {}
+  public close() => true {}
 }

@@ -1,31 +1,31 @@
 package flatlang/io
 
 class StreamReader {//extends InputStream {
-    /*File    file
+  /*File  file
 
-    public construct(File file) {
-        this.file = file
-    }
+  public construct(File file) {
+    this.file = file
+  }
 
-    public readBytes() -> Byte[] {
-        return null
-    }
+  public readBytes() -> Byte[] {
+    return null
+  }
 
-    public readString() -> String {
-        String output = file.readAllContents()
+  public readString() -> String {
+    String output = file.readAllContents()
 
-//        char buffer[] = new char[128]
+//    char buffer[] = new char[128]
 //
-//        while (fgets(buffer, 128, pipe))
+//    while (fgets(buffer, 128, pipe))
 // {
-//            output = output + String(buffer)
-//        }
+//      output = output + String(buffer)
+//    }
 //
-//        if (!feof(pipe))
+//    if (!feof(pipe))
 // {
-//            exit(1, "Unable to read pipe")
-//        }
+//      exit(1, "Unable to read pipe")
+//    }
 
-        return output
-    }*/
+    return output
+  }*/
 }
