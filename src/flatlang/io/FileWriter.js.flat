@@ -8,6 +8,14 @@ class {
   private var String buffer = ""
 
   public write(String data) => this {
+    if (file) {
+      external {
+        #{File.FileGlobal.fs}.writeFileSync(#{file.location.chars.data}, #{data.chars.data});
+      }
+
+      return this
+    }
+
     let split = data.split(/\n/)
 
     if (split.count > 1) {
