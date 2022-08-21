@@ -15,7 +15,7 @@ class {
 
       buffer = split.last
 
-      external js {
+      external {
         console.log(#{dataToPrint.chars.data});
       }
     } else {
@@ -30,18 +30,18 @@ class {
     let oldBuffer = buffer
     buffer = ""
 
-    external js {
+    external {
       var originalLog = console.log;
       var log = [];
     }
     if (silent) {
-      external js {
+      external {
         console.log = function () {
           log.push([].slice.call(arguments));
         };
       }
     } else {
-      external js {
+      external {
         console.log = function () {
           originalLog.apply(this, [].slice.call(arguments));
           log.push([].slice.call(arguments));
@@ -77,7 +77,7 @@ class {
 
   public flush() {
     if (buffer.count > 0) {
-      external js {
+      external {
         console.log(#{buffer.chars.data});
       }
 
