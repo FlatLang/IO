@@ -49,13 +49,7 @@ class File {
   }
 
   normalizeLocation(String location) -> String {
-    let normalized = location.replace("\\", "/")
-
-    return if (normalized.endsWith("/")) {
-      normalized.trimEnd('/')
-    } else {
-      normalized
-    }
+    return location.replace("\\", "/").trimEnd('/')
   }
 
   public toString() => "{File \"#location\"}"
