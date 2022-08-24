@@ -4,7 +4,9 @@
   "description": "Flat IO Library",
   "author": "Braden Steffaniak",
   "license": "ISC",
-  "scripts": {},
+  "scripts": {
+    "test": "node dist/test.js"
+  },
   "main": {
     "source": "src",
     "defaultExports": [
@@ -16,10 +18,12 @@
     }
   },
   "test": {
-    "mainClass": "flatlang/http/IO_TestSuite",
-    "source": "src",
+    "mainClass": "flatlang/io/IO_TestSuite",
+    "source": "test",
     "dependencies": {
-      "github:FlatLang/Nest": "master"
+      "github:FlatLang/Nest": "master",
+      "github:FlatLang/System": "master",
+      "github:FlatLang/IO": "master"
     }
   }
 }
