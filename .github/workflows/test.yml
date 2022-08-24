@@ -50,7 +50,7 @@ jobs:
 
       - name: Link IO
         run: |
-          node airship.js install --link
+          node airship.js reinstall --link
 
       - name: Build IO Test
         run: |
