@@ -71,7 +71,7 @@ class File {
   }
 
   public construct(visible String location) {
-    normalizedLocation = location.replace("\\", "/")
+    normalizedLocation = normalizeLocation(location)
   }
 
   static getExecutedFile() -> File => null {

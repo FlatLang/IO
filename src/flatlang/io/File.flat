@@ -48,5 +48,15 @@ class File {
       .filter({ includeHidden || !_.isHidden })
   }
 
+  normalizeLocation(String location) -> String {
+    let normalized = location.replace("\\", "/")
+
+    return if (normalized.endsWith("/")) {
+      normalized.trimEnd('/')
+    } else {
+      normalized
+    }
+  }
+
   public toString() => "{File \"#location\"}"
 }
