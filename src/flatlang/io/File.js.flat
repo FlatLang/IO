@@ -102,6 +102,24 @@ class File {
     return File(String(data))
   }
 
+  public async getSymbolicLinkTarget() -> String {
+    native var Char[] data
+
+    external {
+      #{data} = await new Promise((resolve, reject) => {
+        #{FileGlobal.fs}.readlink(#{location.chars.data}, (err, target) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(target);
+          }
+        });
+      });
+    }
+
+    return normalizeLocation(String(data))
+  }
+
   public getParent() -> File => null {
     if (normalizedLocation.indexOf("/") == normalizedLocation.lastIndexOf("/")) {
       return null
