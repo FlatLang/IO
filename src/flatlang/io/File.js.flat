@@ -102,6 +102,26 @@ class File {
     return File(String(data))
   }
 
+  public async getCanonicalPath() -> String {
+    var current = this
+    let names = Array<String>()
+
+    while (current) {
+      let target = current.isSymbolicLink ?
+        current.getSymbolicLinkTarget() :
+        current.normalizedLocation
+
+      if (!normalizedLocation.startsWith(target)) {
+        return normalizeLocation(target + "/" + names.join("/"))
+      }
+
+      names.unshift(current.name)
+      current = current.getParent()
+    }
+
+    return normalizedLocation
+  }
+
   public async getSymbolicLinkTarget() -> String {
     native var Char[] data
 
