@@ -52,5 +52,5 @@ class File {
     return location.replace("\\", "/").trimEnd('/')
   }
 
-  public toString() => "{File \"#location\"}"
+  public toString() => "{File \"#normalizedLocation\"}"
 }
