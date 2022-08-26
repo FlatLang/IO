@@ -29,7 +29,8 @@ class File {
 
   public getChildFiles(
     Bool recursive = false,
-    Bool includeHidden = false
+    Bool includeHidden = false,
+    Bool includeDirectories = false
   ) -> File[] {
     let list = files
 
@@ -44,7 +45,7 @@ class File {
     }
 
     return list
-      .filter({ !_.isDirectory })
+      .filter({ includeDirectories || !_.isDirectory })
       .filter({ includeHidden || !_.isHidden })
   }
 
