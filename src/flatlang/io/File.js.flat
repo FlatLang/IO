@@ -70,6 +70,10 @@ class File {
     }
   }
 
+  public construct(File parent, String path) {
+    this(parent.normalizedLocation + "/" + path.trimStart('/'))
+  }
+
   public construct(visible String location) {
     normalizedLocation = normalizeLocation(location)
   }
