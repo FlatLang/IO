@@ -200,6 +200,12 @@ class File {
     }
   }
 
+  public async copy(File destination) => true {
+    external {
+      await #{FileGlobal.fs}.promises.copyFile(#{location.chars.data}, #{destination.location.chars.data});
+    }
+  }
+
   public async symbolicLinkTo(File target) => true {
     external {
       await new Promise((resolve, reject) => {
