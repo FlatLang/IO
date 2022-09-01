@@ -141,9 +141,9 @@ class File {
   }
 
   public getParent() -> File => null {
-    // if (normalizedLocation.indexOf("/") == normalizedLocation.lastIndexOf("/")) {
-    //   return null
-    // }
+    if (normalizedLocation.indexOf("/") == normalizedLocation.lastIndexOf("/")) {
+      return null
+    }
 
     native var Char[] data
 
