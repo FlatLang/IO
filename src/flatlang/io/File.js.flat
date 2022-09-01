@@ -206,6 +206,12 @@ class File {
     }
   }
 
+  public async chmod(String mode) => true {
+    external {
+      await #{FileGlobal.fs}.promises.chmod(#{location.chars.data}, #{mode.chars.data});
+    }
+  }
+
   public async symbolicLinkTo(File target) => true {
     external {
       await new Promise((resolve, reject) => {
