@@ -31,6 +31,14 @@ class {
     }
   }
 
+  public append(String data) => data {
+    if (file) {
+      external {
+        #{File.FileGlobal.fs}.appendFileSync(#{file.location.chars.data}, #{data.chars.data});
+      }
+    }
+  }
+
   public async captureOutput(async action(), Bool silent = true) -> String[] {
     let output = Array<String>()
     native var Char[] data
