@@ -17,6 +17,15 @@ class File {
   visible Bool isDirectory => false
   visible Bool exists => false
 
+  visible String nativeLocation {
+    get {
+      return match System.OS_INT {
+        System.WINDOWS => normalizedLocation.replace("/", "\\")
+        default => normalizedLocation
+      }
+    }
+  }
+
   visible File[] files {
     get {
       return new File[]
