@@ -145,17 +145,17 @@ class File {
   }
 
   public getParent() -> File => null {
-    if (normalizedLocation.indexOf("/") == normalizedLocation.lastIndexOf("/")) {
-      return null
-    }
-
     native var Char[] data
 
     external {
       #{data} = #{FileGlobal.path}.resolve(#{location.chars.data}, '..');
     }
 
-    return File(String(data))
+    let parentLocation = String(data)
+
+    if (parentLocation != location) {
+      return File(parentLocation)
+    }
   }
 
   public getChild(String location) => File(this.location + "/" + location)
