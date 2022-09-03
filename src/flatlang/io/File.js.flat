@@ -201,8 +201,24 @@ class File {
   }
 
   public async copy(File destination) => true {
-    external {
-      await #{FileGlobal.fs}.promises.copyFile(#{location.chars.data}, #{destination.location.chars.data});
+    if (isDirectory) {
+      if (!destination.isDirectory) {
+        destination.mkdir()
+      }
+
+      let files = getChildFiles(
+        recursive: false,
+        includeHidden: true,
+        includeDirectories: true
+      )
+
+      for (file in files) {
+        file.copy(File(destination, file.name))
+      }
+    } else {
+      external {
+        await #{FileGlobal.fs}.promises.copyFile(#{location.chars.data}, #{destination.location.chars.data});
+      }
     }
   }
 
