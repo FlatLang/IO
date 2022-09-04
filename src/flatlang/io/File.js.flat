@@ -106,6 +106,14 @@ class File {
     return File(String(data))
   }
 
+  public async getCanonicalFile() -> File {
+    return File(getCanonicalPath())
+  }
+
+  public getCanonicalFileSync() -> File {
+    return File(getCanonicalPathSync())
+  }
+
   public async getCanonicalPath() -> String {
     var current = this
     let names = Array<String>()
