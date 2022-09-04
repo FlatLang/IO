@@ -30,7 +30,7 @@ class File {
   visible impure File[] files {
     get {
       if (!isDirectory) {
-        throw Exception("Must be a directory to list files")
+        throw Exception("\"#{location}\" must be a directory to list files")
       }
 
       var list = new File[]
