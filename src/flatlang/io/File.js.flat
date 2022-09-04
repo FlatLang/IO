@@ -126,6 +126,26 @@ class File {
     return normalizedLocation
   }
 
+  public getCanonicalPathSync() -> String {
+    var current = this
+    let names = Array<String>()
+
+    while (current) {
+      let target = current.isSymbolicLink ?
+        current.getSymbolicLinkTargetSync() :
+        current.normalizedLocation
+
+      if (!normalizedLocation.startsWith(target)) {
+        return normalizeLocation(target + "/" + names.join("/"))
+      }
+
+      names.unshift(current.name)
+      current = current.getParent()
+    }
+
+    return normalizedLocation
+  }
+
   public async getSymbolicLinkTarget() -> String {
     native var Char[] data
 
@@ -139,6 +159,16 @@ class File {
           }
         });
       });
+    }
+
+    return normalizeLocation(String(data))
+  }
+
+  public getSymbolicLinkTargetSync() -> String {
+    native var Char[] data
+
+    external {
+      #{data} = #{FileGlobal.fs}.readlinkSync(#{location.chars.data});
     }
 
     return normalizeLocation(String(data))
