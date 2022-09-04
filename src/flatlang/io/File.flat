@@ -1,8 +1,9 @@
 package flatlang/io
 
-import flatlang/io/NativeFile.h
 import flatlang/time/Time
-import tinydir.h
+
+import flatlang/regex/Pattern
+import flatlang/regex/RegexStringExtensions
 
 class File {
   visible String location
@@ -11,6 +12,9 @@ class File {
   visible String extension => normalizedLocation.substring(normalizedLocation.lastIndexOf('.', defaultReturnValue: normalizedLocation.count))
   visible String extensionName => normalizedLocation.substring(normalizedLocation.lastIndexOf('.', defaultReturnValue: normalizedLocation.count - 1) + 1)
   visible String rootName => name.substring(end: name.count - extension.count)
+
+  visible String[] extensionNames => name.split(/\./).skip(1)
+  visible String[] extensions => extensionNames.map({ ".#{_}" })
 
   visible Bool isHidden => name.startsWith(".")
   visible Bool isFile => exists && !isDirectory
