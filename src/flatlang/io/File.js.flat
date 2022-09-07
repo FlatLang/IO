@@ -284,30 +284,20 @@ class File {
 
   public static class FileGlobal {
     external type FsType
-    private static var FsType _fs
-    visible static FsType fs {
+    visible static lazy FsType fs {
       get {
         external {
-          if (!#{_fs}) {
-            #{_fs} = require('fs');
-          }
+          return require('fs');
         }
-
-        return _fs
       }
     }
 
     external type PathType
-    private static var PathType _path
-    visible static PathType path {
+    visible static lazy PathType path {
       get {
         external {
-          if (!#{_path}) {
-            #{_path} = require('path');
-          }
+          return require('path');
         }
-
-        return _path
       }
     }
   }
