@@ -1,6 +1,6 @@
-package flatlang/io
+package flat/io
 
-import flatlang/io/File
+import flat/io/File
 
 testable class {
   test `can create file`() {

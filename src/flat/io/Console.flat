@@ -1,8 +1,8 @@
-package flatlang/io
+package flat/io
 
 import stdio.h
 import stdlib.h
-import flatlang/io/NativeConsole.h
+import flat/io/NativeConsole.h
 
 class Console {
   external type FILE

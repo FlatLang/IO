@@ -1,8 +1,8 @@
-package flatlang/io
+package flat/io
 
-import flatlang/regex/Pattern
+import flat/regex/Pattern
 
-import flatlang/regex/RegexStringExtensions
+import flat/regex/RegexStringExtensions
 
 class {
   private var String buffer = ""

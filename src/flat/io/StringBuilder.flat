@@ -1,4 +1,4 @@
-package flatlang/io
+package flat/io
 
 class StringBuilder implements OutputStream {
   var String value

@@ -1,4 +1,4 @@
-package flatlang/io
+package flat/io
 
 class FileReader {
   external type FILE

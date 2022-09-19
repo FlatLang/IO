@@ -1,4 +1,4 @@
-package flatlang/io
+package flat/io
 
 trait OutputStream {
   visible static final EmptyOutputStream EMPTY = EmptyOutputStream()

@@ -1,9 +1,9 @@
-package flatlang/io
+package flat/io
 
-import flatlang/time/Time
+import flat/time/Time
 
-import flatlang/regex/Pattern
-import flatlang/regex/RegexStringExtensions
+import flat/regex/Pattern
+import flat/regex/RegexStringExtensions
 
 class File {
   visible String location

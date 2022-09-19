@@ -1,6 +1,6 @@
-package flatlang/io
+package flat/io
 
-import flatlang/time/Time
+import flat/time/Time
 
 class File {
   let visible static File EXECUTED_FILE = getExecutedFile()
