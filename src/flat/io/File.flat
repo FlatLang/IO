@@ -1,8 +1,8 @@
 package flat/io
 
 import flat/time/Time
-
 import flat/regex/Pattern
+
 import flat/regex/RegexStringExtensions
 
 class File {
