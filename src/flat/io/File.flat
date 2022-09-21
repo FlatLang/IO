@@ -66,8 +66,8 @@ class File {
     return location.replace("\\", "/").trimEnd('/')
   }
 
-  public equals(Object other) => other && other.class.isOfType(File.class) && equals((File)other)
-  public equals(File other) => other && other.normalizedLocation == normalizedLocation
+  public equals(Object other) => (other || !this) && other.class.isOfType(File.class) && equals((File)other)
+  public equals(File other) => (other || !this) && other.normalizedLocation == normalizedLocation
 
   public toString() => "{File \"#normalizedLocation\"}"
 }
