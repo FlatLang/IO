@@ -1,6 +1,7 @@
 package flat/io
 
 import flat/time/Time
+import flat/stream/Stream
 
 class File {
   let visible static File EXECUTED_FILE = getExecutedFile()
@@ -281,6 +282,34 @@ class File {
   }
 
   public static async symbolicLink(File from, File to) => from.symbolicLinkTo(to)
+
+  public createReadStream(String encoding = "utf8") -> Stream {
+    let stream = Stream(true)
+
+    native var Char[] data
+
+    external {
+      const readableStream = #{FileGlobal.fs}.createReadStream(#{location.chars.data}, #{encoding.chars.data});
+
+      readableStream.on('error', (error) => {
+          #{data} = error;
+
+          #{stream.emit("error", String(data))$};
+      });
+
+      readableStream.on('data', (chunk) => {
+          #{data} = chunk;
+
+          #{stream.emit("data", String(data))$};
+      });
+
+      readableStream.on('close', () => {
+          #{stream.emit("close", null)$};
+      });
+    }
+
+    return stream
+  }
 
   public static class FileGlobal {
     external type FsType
