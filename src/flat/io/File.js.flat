@@ -292,19 +292,23 @@ class File {
       const readableStream = #{FileGlobal.fs}.createReadStream(#{location.chars.data}, #{encoding.chars.data});
 
       readableStream.on('error', (error) => {
+        if (typeof error === 'string') {
           #{data} = error;
+        } else {
+          #{data} = error + "";
+        }
 
-          #{stream.emit("error", String(data))$};
+        #{stream.emit("error", String(data))$};
       });
 
       readableStream.on('data', (chunk) => {
-          #{data} = chunk;
+        #{data} = chunk;
 
-          #{stream.emit("data", String(data))$};
+        #{stream.emit("data", String(data))$};
       });
 
       readableStream.on('close', () => {
-          #{stream.emit("close", null)$};
+        #{stream.emit("close", null)$};
       });
     }
 
