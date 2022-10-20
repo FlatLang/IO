@@ -33,7 +33,7 @@ class File {
         throw Exception("\"#{location}\" must be a directory to list files")
       }
 
-      var list = new File[]
+      var list = File[]
 
       [Native]
       Char[] current
@@ -104,7 +104,7 @@ class File {
   }
 
   public listFiles(String location) -> String[] {
-    var names = new String[]
+    var names = String[]
 
     [Native]
     Char[] current
