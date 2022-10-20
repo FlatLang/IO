@@ -4,8 +4,8 @@ import flat/time/Time
 import flat/stream/Stream
 
 class File {
-  let visible static File EXECUTED_FILE = getExecutedFile()
-  let visible static File EXECUTED_DIRECTORY = getExecutedDirectory()
+  visible static File EXECUTED_FILE = getExecutedFile()
+  visible static File EXECUTED_DIRECTORY = getExecutedDirectory()
 
   visible Bool isDirectory {
     get {
