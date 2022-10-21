@@ -308,7 +308,7 @@ class File {
       });
 
       readableStream.on('close', () => {
-        #{stream.emit("close", null)$};
+        #{stream.emit("close")$};
       });
     }
 
