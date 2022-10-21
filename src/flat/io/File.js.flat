@@ -1,7 +1,7 @@
 package flat/io
 
 import flat/time/Time
-import flat/stream/Stream
+import flat/eventstream/EventStream
 
 class File {
   visible static File EXECUTED_FILE = getExecutedFile()
@@ -283,8 +283,8 @@ class File {
 
   public static async symbolicLink(File from, File to) => from.symbolicLinkTo(to)
 
-  public createReadStream(String encoding = "utf8") -> Stream {
-    let stream = Stream(true)
+  public createReadStream(String encoding = "utf8") -> EventStream {
+    let stream = EventStream(true)
 
     native var Char[] data
 
