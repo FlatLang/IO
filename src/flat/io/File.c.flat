@@ -23,8 +23,6 @@ class File {
         return #{file}->is_dir;
       }
     }
-
-    no set
   }
 
   visible impure File[] files {
