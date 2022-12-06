@@ -71,6 +71,14 @@ class File {
     }
   }
 
+  visible Long bytes {
+    get {
+      external {
+        return #{FileGlobal.fs}.statSync(#{location.chars.data}).size;
+      }
+    }
+  }
+
   public construct(File parent, String path) {
     this(parent.normalizedLocation + "/" + path.trimStart('/'))
   }
