@@ -79,6 +79,8 @@ class File {
     }
   }
 
+  public toFileSize() => Long.toFileSize(bytes)
+
   public construct(File parent, String path) {
     this(parent.normalizedLocation + "/" + path.trimStart('/'))
   }
