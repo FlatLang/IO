@@ -8,20 +8,10 @@ class Console {
   external type FILE
   external type thing
 
-  [Target c] external FILE* stdin
-  [Target c] external FILE* stdout
-  [Target c] external int   SEEK_END
+  [Target js] public static OutputStream out = ConsoleOutputStream("log")
+  [Target js] public static OutputStream warn = ConsoleOutputStream("warn")
+  [Target js] public static OutputStream error = ConsoleOutputStream("error")
 
-  [Target java] external thing stdin
-  [Target java] external thing stdout
-
-  [Target js] public static OutputStream out = FileWriter()
-  [Target not js] public static OutputStream out = FileWriter(stdout)
-
-  [Target c] external void fgets(char buf[], int size, FILE* stream) as extReadLine
-  external void fseek(FILE* stream, int offset, int origin)
-  [Target c] external void fputs(char str[], FILE* stream) as writeExternal
-  [Target c] external void fwrite(char str[], int size, int count, FILE* stream)
   [Target js] external void console.log(char str[]) as writeExternal
   external char scanf(char buf[], double* num)
   external char getchar()

@@ -1,105 +1,17 @@
 package flat/io
 
-import flat/regex/Pattern
-
-import flat/regex/RegexStringExtensions
-
 class {
-  private var String buffer = ""
+  public construct() {}
 
-  public write(String data) => this {
-    if (file) {
-      external {
-        #{File.FileGlobal.fs}.writeFileSync(#{file.location.chars.data}, #{data.chars.data});
-      }
-
-      return this
-    }
-
-    let split = data.split(/\n/)
-
-    if (split.count > 1) {
-      let dataToPrint = buffer + split.skipLast(1).join("\n")
-
-      buffer = split.last
-
-      external {
-        console.log(#{dataToPrint.chars.data});
-      }
-    } else {
-      buffer += data
+  override public write(String data) => this {
+    external {
+      #{File.FileGlobal.fs}.writeFileSync(#{file.location.chars.data}, #{data.chars.data});
     }
   }
 
   public append(String data) => data {
-    if (file) {
-      external {
-        #{File.FileGlobal.fs}.appendFileSync(#{file.location.chars.data}, #{data.chars.data});
-      }
-    }
-  }
-
-  public async captureOutput(async action(), Bool silent = true) -> String[] {
-    let output = Array<String>()
-    native var Char[] data
-
-    let oldBuffer = buffer
-    buffer = ""
-
     external {
-      var originalLog = console.log;
-      var log = [];
-    }
-    if (silent) {
-      external {
-        console.log = function () {
-          log.push([].slice.call(arguments));
-        };
-      }
-    } else {
-      external {
-        console.log = function () {
-          originalLog.apply(this, [].slice.call(arguments));
-          log.push([].slice.call(arguments));
-        };
-      }
-    }
-
-    try {
-      action()
-    } finally {
-      external {
-        console.log = originalLog;
-
-        log.forEach((line) => {
-          #{data} = line.map(o => o.toString()).join(" ");
-
-          #{output.add(String(data))};
-        });
-      }
-
-      if (buffer.count > 0) {
-        external {
-          #{data} = #{buffer.chars.data};
-          #{output.add(String(data))};
-        }
-      }
-
-      buffer = oldBuffer
-    }
-
-    return output
-  }
-
-  public flush() {
-    if (buffer.count > 0) {
-      external {
-        console.log(#{buffer.chars.data});
-      }
-
-      buffer = ""
+      #{File.FileGlobal.fs}.appendFileSync(#{file.location.chars.data}, #{data.chars.data});
     }
   }
-
-  public close() => false
 }

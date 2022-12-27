@@ -1,0 +1,9 @@
+package flat/io
+
+import flat/regex/Pattern
+
+import flat/regex/RegexStringExtensions
+
+class implements OutputStream {
+
+}
