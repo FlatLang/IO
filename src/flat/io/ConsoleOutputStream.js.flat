@@ -29,8 +29,14 @@ class {
   }
 
   override public writeLine(String data) => this {
-    buffer += data
-    flush()
+    if (buffer.isNotEmpty) {
+      buffer += data
+      flush()
+    } else {
+      external {
+        console[#{name.chars.data}](#{data.chars.data});
+      }
+    }
   }
 
   public async captureOutput(async action(), Bool silent = true) -> String[] {
