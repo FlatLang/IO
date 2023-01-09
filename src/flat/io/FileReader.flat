@@ -11,11 +11,6 @@ class FileReader implements InputStream {
     open()
   }
 
-  [Target js]
-  public readString() -> String {
-    return readAllContents()
-  }
-
   public open() {}
 
   public close() => true {}

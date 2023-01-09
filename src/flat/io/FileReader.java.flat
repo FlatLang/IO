@@ -2,20 +2,13 @@ package flat/io
 
 class FileReader {
   public readAllContents() -> String {
-    var Int size
-
     native var Char[] buffer
 
     external {
-      try {
-        #{buffer} = #{File.FileGlobal.fs}.readFileSync(#{file.location.chars.data}, 'utf8');
-        #{size} = #{buffer}.length;
-      } catch (err) {
-        #{throw Exception("Could not read contents of file '#file.location'")};
-      }
+
     }
 
-    return String(buffer, size)
+    return String(buffer)
   }
 
   public readString() -> String {
