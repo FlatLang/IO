@@ -10,10 +10,11 @@ class File {
   visible String normalizedLocation
   visible String name => normalizedLocation.substring(normalizedLocation.lastIndexOf('/') + 1)
   visible String extension => normalizedLocation.substring(normalizedLocation.lastIndexOf('.', defaultReturnValue: normalizedLocation.count))
+  visible String fullExtension => normalizedLocation.substring(normalizedLocation.indexOf('.', start: normalizedLocation.lastIndexOf('/', defaultReturnValue: 0), defaultReturnValue: normalizedLocation.count))
   visible String extensionName => normalizedLocation.substring(normalizedLocation.lastIndexOf('.', defaultReturnValue: normalizedLocation.count - 1) + 1)
   visible String rootName => name.substring(end: name.count - extension.count)
 
-  visible String[] extensionNames => name.split(/\./).skip(1)
+  visible String[] extensionNames => fullExtension.split(/\./).skip(1)
   visible String[] extensions => extensionNames.map({ ".#{_}" })
 
   visible Bool isHidden => name.startsWith(".")
