@@ -41,7 +41,7 @@ class {
 
   public async captureOutput(async action(), Bool silent = true) -> String[] {
     let output = Array<String>()
-    native var Char[] data
+    native_array native var Char[] data
 
     let oldBuffer = buffer
     buffer = ""

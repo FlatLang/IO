@@ -33,7 +33,7 @@ class FileReader {
   public readAllContents() -> String {
     var Int size
 
-    native var Char[] buffer
+    native_array native var Char[] buffer
 
     external {
       int string_size;
@@ -79,7 +79,7 @@ class FileReader {
   public readLine() -> String {
     Int bufferSize = 80
 
-    native Char[] line = new Char[bufferSize]
+    native_array native Char[] line = new Char[bufferSize]
 
     external {
       if ((#{bufferSize} = nova_getline(&#{line}, &#{bufferSize}, #{fp})) == -1)
@@ -97,7 +97,7 @@ class FileReader {
   public readString() -> String {
     Int bufferSize = 80
 
-    native Char[] line = new Char[bufferSize]
+    native_array native Char[] line = new Char[bufferSize]
 
     external {
       if ((#{bufferSize} = nova_read(&#{line}, &#{bufferSize}, #{fp})) == -1)

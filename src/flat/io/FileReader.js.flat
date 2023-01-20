@@ -4,7 +4,7 @@ class FileReader {
   public readAllContents() -> String {
     var Int size
 
-    native var Char[] buffer
+    native_array native var Char[] buffer
 
     external {
       try {

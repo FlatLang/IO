@@ -33,8 +33,7 @@ class File {
 
       var list = File[]
 
-      [Native]
-      Char[] current
+      native_array native Char[] current
       tinydir_file* f
 
       external {
@@ -104,8 +103,7 @@ class File {
   public listFiles(String location) -> String[] {
     var names = String[]
 
-    [Native]
-    Char[] current
+    native_array native Char[] current
 
     external {
       tinydir_dir dir;

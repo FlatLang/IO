@@ -2,7 +2,7 @@ package flat/io
 
 class FileReader {
   public readAllContents() -> String {
-    native var Char[] buffer
+    native_array native var Char[] buffer
 
     external {
 

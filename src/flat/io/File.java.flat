@@ -54,7 +54,7 @@ class File {
       }
 
       var list = File[]
-      native Char[] filename
+      native_array native Char[] filename
 
       external {
 
@@ -83,7 +83,7 @@ class File {
   }
 
   static getExecutedFile() -> File => null {
-    native var Char[] data
+    native_array native var Char[] data
 
     external {
 
@@ -93,7 +93,7 @@ class File {
   }
 
   static getExecutedDirectory() -> File => null {
-    native var Char[] data
+    native_array native var Char[] data
 
     external {
 
@@ -151,7 +151,7 @@ class File {
   }
 
   public async getSymbolicLinkTarget() -> String {
-    native var Char[] data
+    native_array native var Char[] data
 
     external {
 
@@ -161,7 +161,7 @@ class File {
   }
 
   public getSymbolicLinkTargetSync() -> String {
-    native var Char[] data
+    native_array native var Char[] data
 
     external {
 
@@ -171,7 +171,7 @@ class File {
   }
 
   public getParent() -> File => null {
-    native var Char[] data
+    native_array native var Char[] data
 
     external {
 
@@ -194,7 +194,7 @@ class File {
       return false
     }
 
-    native var Char[] errorMessage
+    native_array native var Char[] errorMessage
 
     external {
 
@@ -246,7 +246,7 @@ class File {
   public createReadStream(String encoding = "utf8") -> EventStream {
     let stream = EventStream(true)
 
-    native var Char[] data
+    native_array native var Char[] data
 
     external {
 
