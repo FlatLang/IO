@@ -91,7 +91,7 @@ class {
     return output
   }
 
-  public flush() {
+  public flush() => true {
     if (buffer.count > 0) {
       external {
         console[#{name.chars.data}](#{buffer.chars.data});
