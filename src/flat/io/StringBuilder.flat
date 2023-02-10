@@ -7,7 +7,7 @@ class StringBuilder implements OutputStream {
     value = value ?: ""
   }
 
-  public write(String str) => this {
+  public write(String str = "") => this {
     value += str
   }
 

@@ -11,7 +11,7 @@ class {
 
   private var String buffer = ""
 
-  override public write(String data) => this {
+  override public write(String data = "") => this {
     let newLines = data.howMany('\n')
 
     if (newLines > 1) {
@@ -28,7 +28,7 @@ class {
     }
   }
 
-  override public writeLine(String data) => this {
+  override public writeLine(String data = "") => this {
     if (buffer.isNotEmpty) {
       buffer += data
       flush()
