@@ -31,12 +31,6 @@ class File {
     }
   }
 
-  visible File[] files {
-    get {
-      return new File[]
-    }
-  }
-
   static {
     File exitLog = File("log#Time.currentTimeMillis")
   }
