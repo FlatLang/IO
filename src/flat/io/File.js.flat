@@ -239,6 +239,34 @@ class File {
     }
   }
 
+  public deleteSync(
+    Bool: recursive = false,
+    Bool: force = false
+  ) => true {
+    if (!exists) {
+      return false
+    }
+
+    native_array native var Char[] errorMessage
+
+    external {
+      #{errorMessage} = #{FileGlobal.fs}.rmSync(#{location.chars.data}, {
+        recursive: #{recursive},
+        force: #{force}
+      }, (err) => {
+        if (err) {
+          resolve(err.message);
+        } else {
+          resolve(null);
+        }
+      });
+
+      if (#{errorMessage}) {
+        #{throw Exception(String(errorMessage))};
+      }
+    }
+  }
+
   public async mkdirs() => mkdir(true)
 
   public async mkdir(Bool recursive = false, Bool: failOnExistsAlready = false) => true {
