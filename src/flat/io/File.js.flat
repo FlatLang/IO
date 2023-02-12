@@ -51,7 +51,7 @@ class File {
     }
   }
 
-  visible impure File[] files {
+  visible File[] files {
     get {
       if (!isDirectory) {
         throw Exception("\"#{location}\" must be a directory to list files")
