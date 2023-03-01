@@ -3,7 +3,7 @@ package flat/io
 class FileReader implements InputStream {
   visible Bool isOpen => false
 
-  public readBytes() => null
+  public readBytes() -> Byte[] => null
 
   visible File file
 
