@@ -327,7 +327,12 @@ class File {
     native_array native var Char[] data
 
     external {
-      const readableStream = #{FileGlobal.fs}.createReadStream(#{location.chars.data}, #{encoding.chars.data});
+      const readableStream = #{FileGlobal.fs}.createReadStream(
+        #{location.chars.data},
+        {
+          encoding: #{encoding.chars.data}
+        }
+      );
 
       readableStream.on('error', (error) => {
         if (typeof error === 'string') {
