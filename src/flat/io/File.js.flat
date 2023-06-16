@@ -3,6 +3,8 @@ package flat/io
 import flat/time/Time
 import flat/eventstream/EventStream
 
+import static flat/node/import/Import
+
 class File {
     visible static File EXECUTED_FILE = getExecutedFile()
     visible static File EXECUTED_DIRECTORY = getExecutedDirectory()
@@ -359,22 +361,12 @@ class File {
     }
 
     public static class FileGlobal {
-        external type FsType
-        visible static lazy FsType fs {
-            get {
-                external {
-                    return require('fs');
-                }
-            }
-        }
+        public static native Object fs
+        public static native Object path
 
-        external type PathType
-        visible static lazy PathType path {
-            get {
-                external {
-                    return require('path');
-                }
-            }
+        async static {
+            fs = import("fs")
+            path = import("path")
         }
     }
 }
